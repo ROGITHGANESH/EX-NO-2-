@@ -1,6 +1,5 @@
 ## EX. NO:2 IMPLEMENTATION OF PLAYFAIR CIPHER
 
- 
 
 ## AIM:
  
@@ -26,18 +25,73 @@ To encrypt a message, one would break the message into digrams (groups of 2 lett
 ## ALGORITHM:
 
 STEP-1: Read the plain text from the user.
+
+
 STEP-2: Read the keyword from the user.
+
+
 STEP-3: Arrange the keyword without duplicates in a 5*5 matrix in the row order and fill the remaining cells with missed out letters in alphabetical order. Note that ‘i’ and ‘j’ takes the same cell.
+
+
 STEP-4: Group the plain text in pairs and match the corresponding corner letters by forming a rectangular grid.
+
+
 STEP-5: Display the obtained cipher text.
 
 
 
 
-Program:
+## PROGRAM:
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+void main()
+
+{
+    char plain[10],cipher[10];
+    int key,i,length;
+    int result;
+    printf("\n Enter the plain text:");
+    scanf("%s", plain);
+    printf("\n Enter the key value:");
+    scanf("%d", &key);
+    printf("\n \n \t PLAIN TEXt: %s", plain);
+    printf("\n \n \t ENCRYPTED TEXT:");
+    for(i=0, length = strlen(plain); i<length; i++)
+    {
+        
+        cipher[i]=plain[i] + key;
+        if (isupper(plain[i]) && (cipher[i] > 'Z'))
+        cipher[i] = cipher[i] - 26;
+        if (islower(plain[i]) && (cipher[i] > 'z'))
+        cipher[i] = cipher[i] - 26;
+        printf("%c", cipher[i]);
+
+    }
+    printf("\n \n \t AFTER DECRYPTION : ");
+    for(i=0;i<length;i++)
+    {
+        
+        plain[i]=cipher[i]-key;
+        if(isupper(cipher[i])&&(plain[i]<'A'))
+        plain[i]=plain[i]+26;
+        if(islower(cipher[i])&&(plain[i]<'a'))
+        plain[i]=plain[i]+26;
+        printf("%c",plain[i]);
+    }
+}
+```
 
 
 
 
+# OUTPUT:
 
-Output:
+![Screenshot 2025-03-20 090316](https://github.com/user-attachments/assets/a348ca13-6b23-42fc-92bd-dad13a50c0a2)
+
+
+
+## RESULT:
+
+The implementation of Playfair Substitution technique using C program is successfully executed.
